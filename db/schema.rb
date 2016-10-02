@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161002100527) do
+ActiveRecord::Schema.define(version: 20161002113645) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 # Could not dump table "posts" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
+
+  create_table "posts_categories", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "category_id"
+  end
+
+  add_index "posts_categories", ["category_id"], name: "index_posts_categories_on_category_id"
+  add_index "posts_categories", ["post_id"], name: "index_posts_categories_on_post_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
