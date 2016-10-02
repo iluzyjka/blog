@@ -24,6 +24,9 @@
         <ul class="nav navbar-nav">
           <li class="active"><%= link_to 'Posts', posts_path %></li>
         </ul>
+        <ul class="nav navbar-nav">
+          <li class="active"><%= link_to 'Categories', categories_path %></li>
+        </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
             <li><p class="navbar-text">Welcome <%= current_user.email %></p></li>
@@ -36,11 +39,26 @@
       </div>
     </div>
   </nav>
-  <div class="container">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
-  </div>
+  <div class="container-fluid">
+    <div class="row-fluid">
+     <div class="span3">
+       <div class="well sidebar-nav sidebar-nav-fixed">
+         <ul>
+         <% @categories.each do |category| %>
+          <li><%= link_to category.title, posts_category_path(category) %></li>
+          <% end %>
+          </ul>
+       </div><!--/.well -->
+     </div><!--/span-->
+     <div class="span9">
+       <div class="container">
+         <p class="notice"><%= notice %></p>
+         <p class="alert"><%= alert %></p>
+         <%= yield %>
+       </div>
+     </div><!--/span-->
+    </div><!--/row-->
+  </div><!--/.fluid-container-->
   <footer>
   <div class="container">
     Rails Girls 2016

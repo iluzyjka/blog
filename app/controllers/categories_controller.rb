@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:show, :edit, :update, :destroy, :posts]
 
   # GET /categories
   # GET /categories.json
@@ -10,6 +10,12 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
+  end
+
+  # GET /categories/1
+  # GET /categories/1.json
+  def posts
+      @posts =   @category.posts
   end
 
   # GET /categories/new
